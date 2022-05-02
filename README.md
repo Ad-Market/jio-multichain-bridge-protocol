@@ -1,2 +1,2 @@
 # multichain-bridge
-This is a Bridge built for any chain and prebuilt on Synapse Protocol's NodeJS SDK
+This is a Bridge built for Jioswap utilising components from Synapse Protocol's NodeJS SDK
