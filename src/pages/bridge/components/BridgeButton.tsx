@@ -59,7 +59,7 @@ export default function BridgeButton(props: {approved: boolean, amountFrom: BigN
                 });
             }
         }
-    }, [status, approved, disabled, buttonProps])
+    }, [status, approved, disabled, buttonProps, account, amountFrom, amountTo, chainId, ethereum, executeTxn, selectedNetworkTo, selectedTokenFrom, selectedTokenTo])
 
     useEffect(() => {
         if (buttonProps.text === BRIDGE_TEXT) {
@@ -79,7 +79,7 @@ export default function BridgeButton(props: {approved: boolean, amountFrom: BigN
                 })
             });
         }
-    }, [amountFrom, selectedTokenFrom, selectedTokenTo, selectedNetworkTo, amountTo, account])
+    }, [amountFrom, selectedTokenFrom, selectedTokenTo, selectedNetworkTo, amountTo, account, buttonProps, chainId, ethereum, executeTxn])
 
     return (
         <div>

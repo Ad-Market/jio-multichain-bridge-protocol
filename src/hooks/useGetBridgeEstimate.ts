@@ -65,7 +65,7 @@ export function useGetBridgeEstimate(args: UseGetBridgeEstimateArgs) {
 
     useEffect(() => {
         resetInstance(selectedNetworkFrom.chainId);
-    }, [selectedNetworkFrom])
+    }, [selectedNetworkFrom, resetInstance, selectedNetworkFrom.chainId])
 
 
     useEffect(() => {
@@ -99,7 +99,7 @@ export function useGetBridgeEstimate(args: UseGetBridgeEstimateArgs) {
                     console.error(asError(err));
                 })
         }
-    }, [amountIn, selectedTokenFrom, selectedTokenTo]);
+    }, [amountIn, selectedTokenFrom, selectedTokenTo, synapseBridge, selectedNetworkFrom, selectedNetworkTo]);
 
     return [amountOut, bridgeFee, selectedTokenFrom, selectedTokenTo] as const;
 }

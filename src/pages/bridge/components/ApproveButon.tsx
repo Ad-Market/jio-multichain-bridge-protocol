@@ -8,7 +8,7 @@ import {
 } from "@utils";
 
 import {Bridge} from "@synapseprotocol/sdk";
-import {NetworkMenuContext} from "../contexts/NetworkMenuContext";
+// import {NetworkMenuContext} from "../contexts/NetworkMenuContext";
 import {TokenMenuContext} from "../contexts/TokenMenuContext";
 
 import Button, {
@@ -21,7 +21,8 @@ import {useActionButtonOnClick} from "../hooks/useActionButtonOnClick";
 export default function ApproveButon(props: {amountFrom: BigNumber, approved: boolean, setApproved: SetStateFunction<boolean>}) {
     const {status, ethereum, chainId} = useMetaMask();
 
-    const {amountFrom, setApproved} = props;
+    const {amountFrom} = props;
+    // approved and setApproved not function yet
 
     const {selectedTokenFrom}   = useContext(TokenMenuContext);
 
@@ -52,7 +53,7 @@ export default function ApproveButon(props: {amountFrom: BigNumber, approved: bo
                 });
             }
         }
-    }, [status, disabled]);
+    }, [status, disabled, buttonProps.text, chainId, ethereum, executeTxn, selectedTokenFrom]);
 
     useEffect(() => {
         if (buttonProps.text === APPROVE_TEXT) {
@@ -67,7 +68,7 @@ export default function ApproveButon(props: {amountFrom: BigNumber, approved: bo
                 }),
             });
         }
-    }, [amountFrom, selectedTokenFrom])
+    }, [amountFrom, selectedTokenFrom, buttonProps.text, chainId, ethereum, executeTxn])
 
     return (
         <div>

@@ -56,13 +56,13 @@ export default function SourceGrid(props: SourceNetworkGridProps) {
         direction: BridgeDirections.FROM
     });
 
-    useEffect(() => {
-        if (status === "connected") {
-            networkMenuProps.setSelected(networkMenuProps.dropdownItems.find((n) =>
-                BigNumber.from(chainId).eq(n.chainId)
-            ))
-        }
-    }, [status, chainId])
+    // useEffect(() => {
+    //     if (status === "connected") {
+    //         networkMenuProps.setSelected(networkMenuProps.dropdownItems.find((n) =>
+    //             BigNumber.from(chainId).eq(n.chainId)
+    //         ))
+    //     }
+    // }, [status, chainId])
 
     useEffect(() => {
         if (status === "connected") {
@@ -70,7 +70,7 @@ export default function SourceGrid(props: SourceNetworkGridProps) {
                 BigNumber.from(chainId).eq(n.chainId)
             ))
         }
-    }, [chainId, status]);
+    }, [chainId, status, networkMenuProps]);
 
     const {
         TokenMenu,

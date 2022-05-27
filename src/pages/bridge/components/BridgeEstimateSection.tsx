@@ -8,7 +8,7 @@ import {useGetBridgeEstimate} from "@hooks";
 
 import {SetStateFunction, valueEther} from "@utils";
 
-import DarkRoundedItem from "@components/DarkRoundedItem";
+// import DarkRoundedItem from "@components/DarkRoundedItem";
 import {NetworkMenuContext} from "@pages/bridge/contexts/NetworkMenuContext";
 import {Networks} from "@synapseprotocol/sdk";
 
@@ -82,7 +82,7 @@ export default function BridgeEstimateSection(props: BridgeEstimateSectionProps)
             4,
             true
         ));
-    }, [estimate]);
+    }, [estimate, selectedNetworkTo, setAmountOut, tokenTo]);
 
     useEffect(() => {
         if (!fee) {
@@ -95,7 +95,7 @@ export default function BridgeEstimateSection(props: BridgeEstimateSectionProps)
             fee.toString(),
             4
         ));
-    }, [fee]);
+    }, [fee, setAmountOut, selectedNetworkTo, tokenFrom]);
 
     return (
         <>

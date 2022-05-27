@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from "react";
+import {useContext, useEffect, useMemo, useState} from "react";
 
 import TokenDropdown, {TokenDropdownItem} from "../components/TokenDropdown";
 
@@ -62,7 +62,7 @@ export function useSourceTokenMenu() {
     const
         {selectedNetworkFrom: network}            = useContext(NetworkMenuContext),
         {selectedTokenFrom, setSelectedTokenFrom} = useContext(TokenMenuContext),
-        tokens = network?.tokens || [];
+        tokens = useMemo(() => { return network?.tokens || [] }, [network]);
 
     const
         [dropdownItems, setDropdownItems] = useState<TokenDropdownItem[]>(makeDropdownItems(tokens, selectedTokenFrom)),
@@ -71,11 +71,11 @@ export function useSourceTokenMenu() {
     useEffect(() => {
         setDropdownItems(makeDropdownItems(tokens, selectedTokenFrom));
         setSelected(dropdownItems[0]);
-    }, [tokens])
+    }, [tokens, dropdownItems, selectedTokenFrom])
 
     useEffect(() => {
         updateContextSelection(selected, selectedTokenFrom, setSelectedTokenFrom);
-    }, [selected, selectedTokenFrom]);
+    }, [selected, selectedTokenFrom, setSelectedTokenFrom]);
 
     const tokenMenuProps = {
         selected,
@@ -124,7 +124,7 @@ export function useDestinationTokenMenu() {
     useEffect(() => {
         let newTokens = getDestTokens(selectedTokenFrom, selectedNetworkFrom.chainId, selectedNetworkTo.chainId);
         setTokens(newTokens);
-    }, [selectedNetworkTo])
+    }, [selectedNetworkTo, selectedNetworkFrom, selectedTokenFrom])
 
     const
         [dropdownItems, setDropdownItems] = useState<TokenDropdownItem[]>(makeDropdownItems(tokens, selectedTokenTo)),
@@ -135,20 +135,20 @@ export function useDestinationTokenMenu() {
     useEffect(() => {
         let newTokens = getDestTokens(selectedTokenFrom, selectedNetworkFrom.chainId, selectedNetworkTo.chainId);
         setTokens(newTokens);
-    }, [selectedTokenFrom])
+    }, [selectedTokenFrom, selectedNetworkFrom, selectedNetworkTo])
 
     useEffect(() => {
         let newDropdownItems = makeDropdownItems(tokens, selectedTokenTo);
         let newSelected = newDropdownItems.length > 0 ? newDropdownItems[0] : NO_SUPPORTED_TOKENS;
         setDropdownItems(newDropdownItems);
         setSelected(newSelected);
-    }, [tokens])
+    }, [tokens, selectedTokenTo])
 
     useEffect(() => {
         if (!isNullOrUndefined(selected)) {
             updateContextSelection(selected, selectedTokenTo, setSelectedTokenTo);
         }
-    }, [selected, selectedTokenTo]);
+    }, [selected, selectedTokenTo, setSelectedTokenTo]);
 
     const menuProps = {
         selected,

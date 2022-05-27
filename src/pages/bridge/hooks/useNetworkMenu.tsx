@@ -94,7 +94,7 @@ export const useNetworkMenu = ({networks, direction, disabledChain, startIdx=0}:
                     }
                 }
         }
-    }, [selected, selectedNetworkFrom, selectedNetworkTo])
+    }, [selected, selectedNetworkFrom, selectedNetworkTo, direction, dropdownItems])
 
     useEffect(() => {
         let newSelection = selected.network;
@@ -105,7 +105,7 @@ export const useNetworkMenu = ({networks, direction, disabledChain, startIdx=0}:
         } else {
             setSelectedNetwork(newSelection);
         }
-    }, [selected, selectedNetwork])
+    }, [selected, selectedNetwork, setSelectedNetwork])
 
     const networkMenuProps = {selected, setSelected, dropdownItems, direction};
 
