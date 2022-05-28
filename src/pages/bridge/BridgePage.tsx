@@ -9,14 +9,12 @@ import {NetworkMenuContextProvider} from "./contexts/NetworkMenuContext";
 import SourceGrid, {AMOUNTS_FROM_OPTIONS} from "./SourceGrid";
 import DestinationGrid from "./DestinationGrid";
 
-// import {Grid} from "@components/Grid";
-
 import {BigNumber} from "ethers";
 
-const boxStyle = {
-    border : `border border-solid border-1 border-purple-600 border-opacity-50`,
+const style = {
+    card : `border border-solid border-1 border-purple-600 border-opacity-50 rounded-[30px] h-40`,
+    divider: `rounded-[50px] text-sm p-3 bg-gradient-to-r from-[#0052D4] to-[#6FB1FC]`
 }
-
 
 
 function BridgePageContent(props: {className?: string}) {
@@ -27,7 +25,11 @@ function BridgePageContent(props: {className?: string}) {
 
     return(
         <div className={"w-2/3"}>
-            <div className={`${boxStyle.border} rounded-[30px] px-4 h-40`}>
+            <div className="w-full h-15">
+                EVM
+            </div>
+
+            <div className={`${style.card}`}>
                 <SourceGrid
                     selectedAmountFrom={amountFrom}
                     setSelectedAmountFrom={setAmountFrom}
@@ -37,14 +39,14 @@ function BridgePageContent(props: {className?: string}) {
             <div className={"h-5"} />
 
             <div className="self-auto h-15">
-                <button className="rounded-[50px] text-sm p-3 bg-gradient-to-r from-[#0052D4] to-[#6FB1FC]" >
+                <button className={`${style.divider}`} >
                     <FiArrowDown />
                 </button>
             </div>
             
             <div className={"h-5"} />
 
-            <div className={`${boxStyle.border} rounded-[30px] px-4 h-40`}>
+            <div className={`${style.card}`}>
                 {amountFrom && <DestinationGrid
                     amountIn={amountFrom?.amount || BigNumber.from(0)}
                     amountOut={amountOut}
@@ -52,6 +54,7 @@ function BridgePageContent(props: {className?: string}) {
                 />}
             </div>
 
+            <div className={"h-10"} />
 
             <ApproveButon
                 amountFrom={amountFrom?.amount || BigNumber.from(0)}

@@ -65,7 +65,7 @@ export function useGetBridgeEstimate(args: UseGetBridgeEstimateArgs) {
 
     useEffect(() => {
         resetInstance(selectedNetworkFrom.chainId);
-    }, [selectedNetworkFrom, resetInstance, selectedNetworkFrom.chainId])
+    }, [selectedNetworkFrom, resetInstance])
 
 
     useEffect(() => {

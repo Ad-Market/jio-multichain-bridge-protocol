@@ -12,7 +12,7 @@ export default function Button({text, onClick, disabled=false}: ButtonProps) {
     return (
         <div>
             <button
-                className={"w-full bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded-full"}
+                className={"w-2/5 bg-gradient-to-r from-[#CC90E6] to-[#7E6BFA] text-white text-sm font-bold py-2 px-4 rounded-[10px]"}
                 onClick={onClick ?? emptyOnClick}
                 disabled={disabled}
             >
