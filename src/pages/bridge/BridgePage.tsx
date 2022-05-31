@@ -25,8 +25,17 @@ function BridgePageContent(props: {className?: string}) {
 
     return(
         <div className={"w-2/3"}>
-            <div className="w-full h-15">
-                EVM
+            <div className="w-full h-15 text-left">
+                <h3 className="font-bold p-10">EVM</h3>
+{/* 
+                <div className="text-center">
+                    <div>
+                        <h3 className="font-bold bg-grey p-10">JIO</h3>
+                    </div>
+                    <div>
+                        <h3 className="font-bold bg-grey p-10">ETH</h3>
+                    </div>
+                </div> */}
             </div>
 
             <div className={`${style.card}`}>
